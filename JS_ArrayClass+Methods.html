@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Array Class and Methods</title>
+</head>
+<body>
+
+
+<script>
+
+    /// Was ist ein Array? ///
+
+    //     -	Ist eine spezielle Art von Objekt, welches Elemente unter einem einzigen Variablennamen speichert
+    //     -	Arrays verwenden nummerierte Indizes, um auf ihre Elemente zuzugreifen
+    //     -	Speicherung mehrerer Elemente wie Zahlen, Strings und andere Objekte oder Arrays
+    //     -	Arrays besitzen eine Vielzahl von integrierten Methoden, die dabei helfen Daten hinzuzufügen,
+    //          zu entfernen, zu iterieren oder zu manipulieren
+
+    /// Übersicht der Klasse Array und ihrer Methoden ///
+    Array.prototype;
+    console.log(Array.prototype);
+    // Anmerkung: Vom Prototyp-Objekt der Array Klasse erben alle Instanzen eines erstellten Arrays ihre Eigenschaften
+    // und Methoden.
+
+
+    // Beispiele //
+    const fruits = ['apple', 'banana', 'kiwi', 'banana'];
+    const numbers = [1, 2, 3, 4, 5];
+    const moreNumbers = [63, 101, 27, 4, 49];
+    const letters = [['a', 'b'], ['c', 'd'], ['e', 'f']];
+
+    console.log(`Das ist das Fruits-Array [${fruits}].`);
+    console.log(`Das ist das Numbers-Array [${numbers}].`);
+    console.log(`Das ist das moreNumbers-Array [${moreNumbers}].`);
+    console.log(`Das ist das Letters-Array [${letters}].`);
+
+
+    /// Instanz-Methoden ///
+
+    /// Basis ///
+
+    // length()-Methode (Instance Properties) //
+    // console.log(fruits.length);
+    // fruits.length = 7;
+    // console.log(fruits);
+    // console.log(fruits[6]);
+    // Ergebnis: Gibt die Größe des Arrays an (Anzahl an Elementen).
+    // Zusatz: Die length()-Methode kann auch verwendet werden, um die Länge des Arrays zu ändern. Dabei werden überzählige
+    // Elemente entfernt oder als 'undefined' hinzugefügt.
+
+    // toString()-Methode + join()-Methode //
+    // console.log(letters.toString());
+    // Ergebnis: Konvertiert die Elemente eines Arrays zu einem string (separiert durch ein Komma).
+    // Zusatz: Die join()-Methode verhält sich wie die toString()-Methode mit dem Unterschied, das man den Separator
+    // spezifizieren kann.
+    // console.log(fruits.join(' -> '));
+
+    // at()-Methode // ????
+    // console.log(fruits.at(2));
+    // console.log(fruits[2]);
+    // Ergebnis: Gibt ein spezifisches Element des Arrays wieder; äquivalent zu [].
+    // at()-Methode löst das Problem in JavaScript mit negativen Indexen bei [], da in JavaScript Arrays und Objekte mit
+    // [] angesprochen werden können. objekt[-1] gäbe nicht das letzte Element (Property) wieder, sondern den Wert mit dem Key -1;
+    // → objekt.propertyName; oder objekt['propertyName'];
+
+
+    /// Hinzufügen und Entfernen ///
+
+    // push()-Methode //
+    // fruits.push('orange');
+    // console.log(fruits);
+    // Ergebnis: Fügt am Ende des Arrays ein Element hinzu.
+
+    // unshift()-Methode //
+    // fruits.unshift('orange', 'mango');
+    // console.log(fruits);
+    // Ergebnis: Fügt ein oder mehrere Elemente am Anfang des Arrays hinzu.
+
+    // pop()-Methode //
+    // fruits.pop();
+    // console.log(fruits);
+    // Ergebnis: Entfernt das letzte Element aus dem Array.
+
+    // shift()-Methode //
+    // fruits.shift();
+    // console.log(fruits);
+    // Ergebnis: Entfernt das erste Element aus dem Array.
+
+    // delete()-Methode (* siehe splice()) //
+    // delete fruits[1];
+    // console.log(fruits[1]);
+    // Ergebnis: Löscht ein Element durch angebenden Index.
+    // Zusatz: Nicht zu empfehlen, da 'undefined' Lücken zurückbleiben.
+
+    // concat()-Methode //
+    // const concat2Arr = fruits.concat(numbers);
+    // console.log(concat2Arr);
+    // Ergebnis: Erzeugt ein neues Array durch Zusammenfügen zwei existierender Arrays.
+
+    // copyWithin()-Methode //
+    // fruits.copyWithin(2,0);
+    // console.log(fruits);
+    // Ergebnis: Kopiert ein Element und überschreibt ein anderes, wobei der erste Parameter das zu überschreibende Element
+    // angibt und der zweite Parameter, das zu kopierende Element.
+
+    // flat()-Methode //
+    // console.log(letters.flat());
+    // const letters2 = [['a', 'b'], ['c', 'd'], ['e', 'f', ['g', 'h']]];
+    // console.log(letters2.flat());
+    // Ergebnis: Flacht ein multidimensionales Array in ein eindimensionales Array ab.
+
+    // splice()-Methode + toSpliced()-Methode //
+    // fruits.toSpliced(2, 1, 'cherry', 'lemon');
+    // console.log(fruits);
+    // Ergebnis: Fügt einem Array weitere Elemente hinzu, wobei der erste Parameter die Position angibt und der zweite
+    // Parameter wie viele Elemente entfernt werden sollen (Elemente, welche hinter den eingefügten liegen). Die folgenden
+    // Parameter sind jene, die hinzugefügt werden.
+    // Zusatz: Die toSpliced()-Methode unterscheidet sich zur splice()-Methode insofern, das ein neues Array erstellt wird
+    // und das SourceArray erhalten bleibt.
+
+    // splice()-Methode zum Löschen nutzen //
+    // fruits.splice(1,1);
+    // console.log(fruits);
+    // Ergebnis: Löscht ein Element ohne eine 'undefined' Lücke zu hinterlassen. Da auch kein weiterer Parameter übergeben
+    // wurde, kann splice() so zum Löschen genutzt werden.
+
+    // slice()-Methode //
+    // console.log(fruits.slice(1));
+    // console.log(fruits.slice(-1));
+    // Ergebnis: 'Schneidet' einen Teil aus einem Array ab und erstellt ein neues Array, wobei der übergebende Parameter
+    // die Stelle des Cuts angibt.
+
+
+    /// Search ///
+
+    // indexOf()-Methode + lastIndexOf()-Methode //
+    // let position1 = fruits.indexOf('banana');
+    // console.log(position1);
+    // Ergebnis: Gibt die Position (Index) von 'banana' im Array an (erstes Auffinden).
+    // let position2 = fruits.lastIndexOf('banana');
+    // console.log(position2);
+    // Ergebnis: Gibt die Position von 'banana' im Array an (letztes Auffinden).
+    // Zusatz: Ein zweiter optionaler Parameter kann hinzugefügt werden, der einen Startpunkt für die Suche im Array festlegt.
+    // ein negativer Wert startet die Suche an der gegebenen Position und durchläuft die Suche zum Anfang des Arrays.
+    // let position3 = fruits.indexOf('banana', -3);
+    // console.log(position3);
+    // Bei Indexsuche mit dem Ergebnis 0, erhält man die Information darüber, dass das Element nicht gefunden wurde.
+    // Es können keine Zahlen als Values ermittelt werden, da nach einem String gesucht wird (NaN) -> includes().
+
+    // includes()-Methode //
+    // let kiwi = fruits.includes('kiwi');
+    // let mango = fruits.includes('mango');
+    // console.log(kiwi, mango);
+    // let num = numbers.includes(3);
+    // console.log(num);
+    // Ergebnis: Gibt Aufschluss darüber, ob ein Element vorhanden ist oder nicht (Boolean).
+
+    // find()-Methode + findIndex()-Methode //
+    // let num1 = numbers.find(bigger3);
+    // let num2 = numbers.findIndex(bigger3);
+    // function bigger3(value, index, array) {
+    //     return value > 3;
+    // }
+    // console.log(num1, num2);
+    // Ergebnis: Die find()-Methode 'findet' ein Element, nach dem Aufruf einer Callback-Funktion (3 Parameter).
+    // Indes gibt die findIndex()-Methode den Index wieder.
+
+    // findLast()-Methode + findLastIndex()-Methode //
+    // let num3 = numbers.findLast(bigger3);
+    // let num4 = numbers.findLastIndex(bigger3);
+    // console.log(num3, num4);
+    // Anmerkung: Diese Methoden gehen wie die find() -und findIndex()-Methoden vor mit dem Unterschied, das vom letzten
+    // Element des Arrays gestartet wird.
+
+
+    /// Sort ///
+
+    // sort()-Methode + toSorted()-Methode //
+    // console.log(fruits.sort());
+    // Ergebnis: Sortiert das Array alphabetisch, wobei toSorted() ein neues Array erstellt und das SourceArray unangetastet
+    // bleibt.
+    // Zusatz: sort() funktioniert auch mit einem Zahlenarray (aufsteigend und absteigend) → Numeric Sort.
+
+    // reverse()-Methode + toReversed()-Methode //
+    // console.log(fruits.reverse());
+    // Ergebnis: Invertiert das Array, wobei toReversed() eine neues Array erstellt und das SourceArray unangetastet bleibt.
+    // Zusatz: Kombination möglich:
+    // console.log(fruits.sort().reverse());
+
+    // Numeric Sort //
+    // console.log(moreNumbers.sort((a,b) => a - b )); // aufsteigend Kurzform
+    // console.log(moreNumbers.sort((a,b) => b - a )); // absteigend Kurzform
+    // Anmerkung: Wären die Zahlen als Strings im Array enthalten (['25', '100']), würde als Ergebnis der sort()-Methode
+    // ['100', '25'] ausgegeben werden, da 2 größer als 1 ist.
+    // Zusatz: Compare Function (Langform):
+    // comp = function(a, b){return a - b};
+    // console.log(moreNumbers.sort(comp));
+    // Zusatz2: Zum Ermitteln eines max. oder min. Values ohne ein ganzes Array zu sortieren und sich anschließend das
+    // erste oder letzte Element ausgeben zu lassen.
+    // console.log(Math.min.apply(null, moreNumbers));
+    // console.log(Math.max.apply(null, moreNumbers));
+
+
+    /// Iteration ///
+
+    // forEach()-Methode //
+    // const show = function (index, value) {
+    //     console.log(index + ' : ' + value);
+    // }
+    // fruits.forEach(show);
+    // Ergebnis: Iteriert durch das Array mit übergebender Callback-Funktion [Langform] und gibt diese auf der Konsole aus.
+    // Zusatz: Auch als Kurzform möglich mit anonymer Funktion (einmaliger Gebrauch)
+    // fruits.forEach(function (index, value) {
+    //     console.log(index + ' : ' + value)});
+
+    // map()-Methode //
+    // const double = function (value) {
+    //     return value * 2;
+    // }
+    // doubleNumbers = numbers.map(double);
+    // console.log(doubleNumbers);
+    // Ergebnis: Iteriert durch das Array mit übergebender Callback-Funktion und erstellt ein neues Array.
+
+    // flatMap()-Methode //
+    // const triple = function (value) {
+    //     return [value, value * 3]
+    // }
+    // tripleNumbers1 = moreNumbers.flatMap(triple);
+    // tripleNumbers2 = moreNumbers.map(triple);
+    // console.log(tripleNumbers1, tripleNumbers2);
+    // Ergebnis: Iteriert durch das Array mit übergebender Callback-Funktion und erstellt ein neues 'abgeflachtes' Array.
+
+    // filter()-Methode //
+    // const higher = function (value) {
+    //     return value > 50;
+    // }
+    // higher50 = moreNumbers.filter(higher);
+    // console.log(higher50);
+    // Ergebnis: Filtert das SourceArray mit übergebender Callback-Funktion nach Values, die die Callback-Funktion
+    // erfolgreich passieren und erstellt ein neues Array mit diesen Values.
+
+    // reduce()-Methode + reduceRight()-Methode //
+    // const add = function (total, value) {
+    //     return total + value;
+    // }
+    // sum1 = moreNumbers.reduce(add);
+    // console.log(sum1);
+    // Ergebnis: Erstellt einen einzigen Return-Value aus allen Values (reduce it to) (hier: Summe). Der 'total'-Parameter
+    // oder auch Accumulator speichert das Ergebnis, der vorherigen Iteration.
+    // Zusatz: Für den Accumulator kann auch ein Initialwert angegeben werden, ansonsten ist der erste Wert im Array der
+    // Initialwert und die Iteration startet beim zweiten Wert.
+    // sum2 = numbers.reduce(add, 10);
+    // console.log(sum2);
+    // Anmerkung: Die reduce()-Methode arbeitet von links nach rechts, wo hingegen reduceRight() von rechts nach links verläuft.
+
+    // every()-Methode + some()-Methode //
+    // const higher = function (value) {
+    //     return value > 50;
+    // }
+    // allHigher50 = moreNumbers.every(higher);
+    // console.log(allHigher50);
+    // Ergebnis: Überprüft, ob alle Values eines Arrays eine übergebende Callback-Funktion passieren und gibt einen
+    // Boolean-Wert wieder.
+    // Anmerkung: Die some()-Methode überprüft dagegen, ob einige Values die Callback-Funktion passieren.
+    // someHigher50 = moreNumbers.some(higher);
+    // console.log(someHigher50);
+
+    // keys()-Methode //
+    // const keys = fruits.keys();
+    // let text1 = "";
+    // for (let x of keys) {
+    //     text1 += x + '\n';
+    // }
+    // console.log(text1);
+    // Ergebnis: Liest die Keys des Arrays aus.
+
+    // values()-Methode //
+    // const values = fruits.values();
+    // let text2 = "";
+    // for (let x of values) {
+    //     text2 += x + '\n';
+    // }
+    // console.log(text2);
+    // Ergebnis: Liest die Values des Arrays aus.
+
+    // entries()-Methode //
+    // const entries = fruits.entries();
+    // let text3 = "";
+    // for (let x of entries) {
+    //     text3 += x + '\n';
+    // }
+    // console.log(text3);
+    // Ergebnis: Liest alle Key-Value-Kombinationen aus.
+
+    // with()-Methode //
+    // const moreFruits = fruits.with(1, 'mango')
+    // console.log(moreFruits);
+    // Ergebnis: Updated ein Array ohne das SourceArray zu verändern.
+    // Anmerkung: Kann nicht alternativ wie push() verwendet werden, um einem Array Werte hinzuzufügen.
+
+    // spread-Operator //
+    // const allArrays = [...fruits, ...numbers, ...moreNumbers, ...letters];
+    // console.log(allArrays);
+    // Ergebnis: Der spread-Operator erzeugt flache Kopien von Arrays. Dadurch werden unerwünschte Änderungen in den
+    // SourceArrays vermieden.
+
+
+    /// Statische-Methoden ///
+
+    // Array.of();
+    // let array1 = Array.of('a', 'b', 'c');
+    // let array2 = new Array(3);
+    // console.log(array1, array2);
+    // Ergebnis: Die Array.of()-Methode erstellt ein Array aus beliebigen Werten, wobei bei new Array(3); einfach ein
+    // leeres Array mit der Länge 3 erstellt.
+
+    // Array.from();
+    // Aus einer Zeichenkette
+    // const jS = Array.from("JavaScript");
+    // console.log(jS);
+    // Durch Mapping eines Arrays
+    // const mal2 = Array.from(numbers, value => value * 2);
+    // console.log(mal2);
+    // Aus einem Set
+    // const set = new Set([1, 2, 3, 4, 5]);
+    // const arrSet = Array.from(set);
+    // console.log(arrSet);
+    // Aus einem Objekt mit Längen-Eigenschaft
+    // const length = Array.from({length: 5}, (value, index) => index);
+    // console.log(length);
+    // Ergebnis: Konvertiert ein array-ähnliches oder iterierbares Objekt in ein neues Array.
+
+    // Array.isArray();
+    // console.log(Array.isArray(fruits));
+    // Ergebnis: Gibt ein Boolean-Wert, ob ein Value ein Array ist oder nicht (mit dem typeof-Operator werden Arrays in
+    // JavaScript nur als Objekte identifiziert.
+
+    // Array.arguments;
+    // function example() {
+    //     console.log(arguments.length);
+    //     for (let i = 0; i < arguments.length; i++) {
+    //         console.log(arguments[i]);
+    //     }
+    //     const argsArray = Array.from(arguments);
+    //     console.log(argsArray);
+    // }
+    // example('Das', 'ist', 'ein', 'Test!');
+    // Ergebnis: Array.arguments ist ein spezielles Objekt, das innerhalb von Funktionen verfügbar ist. Es enthält alle
+    // Argumente, die an die Funktion übergeben wurden und ist ein array-ähnliches Objekt. Es besitzt einige Eigenschaften
+    // eines Arrays, wie z.B. die Möglichkeit auf Elemente mittels Indizes zuzugreifen oder die length-Eigenschaft.
+    // Zusatz: Da es kein richtiges Array ist, wurde im Beispiel mit Array.from() eines erstellt.
+
+</script>
+</body>
+</html>
